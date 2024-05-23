@@ -1,0 +1,17 @@
+table {
+	/*--utseende tabell--*/
+	border: 1px solid;
+	width: 50%;
+	text-align: left;
+}
+
+th {
+	/*--utseende översta raden i tabell--*/
+	background-color: #a898ba;
+	width: 50%;
+}
+
+tr:nth-child(even) {
+	background-color: #f2f2f2;
+}
+

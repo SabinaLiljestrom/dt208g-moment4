@@ -2,22 +2,33 @@ import { Component } from '@angular/core';
 import { Course } from '../models/course';
 import { CoursesService } from '../services/courses.service';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-courses',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './courses.component.html',
   styleUrl: './courses.component.css'
 })
 export class CoursesComponent {
 //properties
 courses: Course[] = [];
+filteredCourses: Course [] = [];
+filterValue: string = "";
 constructor(private coursesService: CoursesService) {}
 
 ngOnInit (){
   this.coursesService.getCourses().subscribe((courses)=> {
     this.courses = courses;
+    this.filteredCourses = courses;
   });
+}
+applyFilter(): void {
+  this.filteredCourses = this.courses.filter((course) =>
+    course.code.toLowerCase().includes(this.filterValue.toLowerCase()) ||
+    course.coursename.toLowerCase().includes(this.filterValue.toLowerCase()) ||
+    course.progression.toLowerCase().includes(this.filterValue.toLowerCase())
+  );
 }
 }
