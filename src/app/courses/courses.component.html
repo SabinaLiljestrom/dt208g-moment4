@@ -1,0 +1,16 @@
+<h1>Kurser</h1>
+<table *ngFor="let course of courses">
+    <tr>
+    <th>Kurskod</th>
+    <th>Kursnamn</th>
+    <th>Progression</th>
+    <th>Kursplan</th>
+    </tr>
+    <tr>
+    <td>{{course.code}}</td>
+    <td>{{course.coursename}}</td>
+    <td>{{course.progression}}</td>
+    <td>{{course.syllabus}}</td>
+    </tr>
+    </table>
+
