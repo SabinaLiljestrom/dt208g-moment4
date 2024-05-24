@@ -3,9 +3,7 @@
     <label for="filter">Sök efter kurskod eller kursnamn: </label>
     <input type="text" id="filter" [(ngModel)]="filterValue" (input)="applyFilter()">
 </div>
-@if (filteredCourses.length === 0) {
-    Inga kurser som innehåller sökfrasen
-}
+
 
     <button (click)="sortCourses('code')">Sortera efter Kurskod</button>
 
@@ -26,3 +24,6 @@
         <td><a href="{{ course.syllabus }}">Länk kursplan</a></td>
     </tr>
 </table>
+@if (filteredCourses.length === 0) {
+    Inga kurser som innehåller sökfrasen
+}

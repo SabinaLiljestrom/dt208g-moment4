@@ -24,9 +24,9 @@ export class CoursesComponent {
   }
   applyFilter(): void {
     this.filteredCourses = this.courses.filter((course) =>
-      course.code.toLowerCase().includes(this.filterValue.toLowerCase()) ||
-      course.coursename.toLowerCase().includes(this.filterValue.toLowerCase()) ||
-      course.progression.toString().includes(this.filterValue.toLowerCase())
+      course.code.toLowerCase().includes(this.filterValue) ||
+      course.coursename.toLowerCase().includes(this.filterValue) ||
+      course.progression.includes(this.filterValue)
     );
   }
   sortCourses(criteria: string): void {
