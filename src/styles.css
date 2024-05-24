@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+main {
+margin: 1.4em;
+}
+ h1{
+	margin: 0 0 0 0.5em;
+    color:#a898ba ;
+ }
+ h2{
+	margin: 0 0 0 0.7em;
+    color: #a898ba;
+ }
