@@ -3,21 +3,26 @@
     <label for="filter">Filtrera kurser</label>
     <input type="text" id="filter" [(ngModel)]="filterValue" (input)="applyFilter()">
 </div>
-@if (filteredCourses.length === 0){
+@if (filteredCourses.length === 0) {
     Inga kurser som innehåller sökfrasen
 }
+
+    <button (click)="sortCourses('code')">Sortera efter Kurskod</button>
+
+    <button (click)="sortCourses('coursename')">Sortera efter Kursnamn</button>
+
+    <button (click)="sortCourses('progression')">Sortera efter Progression</button>
 <table>
     <tr>
-    <th>Kurskod</th>
-    <th>Kursnamn</th>
-    <th>Progression</th>
-    <th>Kursplan</th>
+        <th>Kurskod</th>
+        <th>Kursnamn</th>
+        <th>Progression</th>
+        <th>Kursplan</th>
     </tr>
     <tr *ngFor="let course of filteredCourses">
-    <td>{{course.code}}</td>
-    <td>{{course.coursename}}</td>
-    <td>{{course.progression}}</td>
-    <td><a href="{{course.syllabus}}">Länk kursplan</a></td>
+        <td>{{ course.code }}</td>
+        <td>{{ course.coursename }}</td>
+        <td>{{ course.progression }}</td>
+        <td><a href="{{ course.syllabus }}">Länk kursplan</a></td>
     </tr>
-    </table>
-
+</table>

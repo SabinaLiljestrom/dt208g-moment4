@@ -3,7 +3,6 @@ import { Course } from '../models/course';
 import { CoursesService } from '../services/courses.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-
 @Component({
   selector: 'app-courses',
   standalone: true,
@@ -12,23 +11,33 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './courses.component.css'
 })
 export class CoursesComponent {
-//properties
-courses: Course[] = [];
-filteredCourses: Course [] = [];
-filterValue: string = "";
-constructor(private coursesService: CoursesService) {}
-
-ngOnInit (){
-  this.coursesService.getCourses().subscribe((courses)=> {
-    this.courses = courses;
-    this.filteredCourses = courses;
-  });
-}
-applyFilter(): void {
-  this.filteredCourses = this.courses.filter((course) =>
-    course.code.toLowerCase().includes(this.filterValue.toLowerCase()) ||
-    course.coursename.toLowerCase().includes(this.filterValue.toLowerCase()) ||
-    course.progression.toLowerCase().includes(this.filterValue.toLowerCase())
-  );
-}
+  // Properties
+  courses: Course[] = [];
+  filteredCourses: Course[] = [];
+  filterValue: string = "";
+  constructor(private coursesService: CoursesService) {}
+  ngOnInit() {
+    this.coursesService.getCourses().subscribe((courses) => {
+      this.courses = courses;
+      this.filteredCourses = courses;
+    });
+  }
+  applyFilter(): void {
+    this.filteredCourses = this.courses.filter((course) =>
+      course.code.toLowerCase().includes(this.filterValue.toLowerCase()) ||
+      course.coursename.toLowerCase().includes(this.filterValue.toLowerCase()) ||
+      course.progression.toString().includes(this.filterValue.toLowerCase())
+    );
+  }
+  sortCourses(criteria: string): void {
+    this.filteredCourses.sort((a, b) => {
+      if (a[criteria] < b[criteria]) {
+        return -1;
+      }
+      if (a[criteria] > b[criteria]) {
+        return 1;
+      }
+      return 0;
+    });
+  }
 }
